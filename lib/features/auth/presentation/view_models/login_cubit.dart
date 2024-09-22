@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mini_whatsapp/features/login/data/login_repository.dart';
+import 'package:mini_whatsapp/features/auth/data/repositories/login_repository.dart';
 
 part 'login_state.dart';
 

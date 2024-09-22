@@ -1,6 +1,6 @@
 import 'package:mini_whatsapp/core/helper/function.dart';
 import 'package:mini_whatsapp/core/model/api_result.dart';
-import 'package:mini_whatsapp/features/login/data/data_source.dart';
+import 'package:mini_whatsapp/features/auth/data/data_sources/data_source.dart';
 
 class LoginRepository {
   final DataSource dataSource;

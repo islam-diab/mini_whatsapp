@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mini_whatsapp/features/login/logic/login_cubit.dart';
-import 'package:mini_whatsapp/features/login/ui/wigdget/app_text_form.dart';
+import 'package:mini_whatsapp/features/auth/presentation/view_models/login_cubit.dart';
+import 'package:mini_whatsapp/features/auth/presentation/views/wigdget/app_text_form.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
