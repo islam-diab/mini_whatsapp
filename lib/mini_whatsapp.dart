@@ -11,7 +11,7 @@ class MiniWhatsapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Routes.login,
+      initialRoute: Routes.splash,
       onGenerateRoute: appRouter.generateRoute,
     );
   }
