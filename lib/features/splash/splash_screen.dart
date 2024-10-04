@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_whatsapp/core/helper/spaser.dart';
+import 'package:mini_whatsapp/core/constants/assets_constants.dart';
 import 'package:mini_whatsapp/core/routing/routes.dart';
 import 'package:mini_whatsapp/core/theming/app_text_styles.dart';
 
@@ -15,9 +15,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, Routes.login);
-    });
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   Navigator.pushReplacementNamed(context, Routes.login);
+    // });
   }
 
   @override
@@ -28,7 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Expanded(flex: 3, child: SizedBox.shrink()),
-          Image.asset('assets/splash/whatsapp.png'),
+          Image.asset(
+            AppAssets.splash,
+            width: 200,
+          ),
           const Expanded(flex: 2, child: SizedBox.shrink()),
           const Text(
             'The Best Chat App of this company',
