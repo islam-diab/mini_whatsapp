@@ -5,6 +5,7 @@ import 'package:mini_whatsapp/features/auth/data/data_sources/data_source.dart';
 import 'package:mini_whatsapp/features/auth/data/repositories/login_repository.dart';
 import 'package:mini_whatsapp/features/auth/presentation/view_models/login_cubit.dart';
 import 'package:mini_whatsapp/features/auth/presentation/views/login_view.dart';
+import 'package:mini_whatsapp/features/splash/splash_screen.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -19,6 +20,11 @@ class AppRouter {
             ),
             child: const LoginView(),
           ),
+        );
+
+      case Routes.splash:
+        return MaterialPageRoute(
+          builder: (_) => const SplashScreen(),
         );
 
       default:
