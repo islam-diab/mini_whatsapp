@@ -6,7 +6,9 @@ import 'package:mini_whatsapp/mini_whatsapp.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
-  runApp( MiniWhatsapp(
-    appRouter: AppRouter(),
-  ));
+  runApp(
+    MiniWhatsapp(
+      appRouter: AppRouter(),
+    ),
+  );
 }
