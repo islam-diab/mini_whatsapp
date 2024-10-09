@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
             width: 250,
           ),
           const Text(
-            'WhatsUp',
+            'Whats App',
             style: AppTextStyles.font20bold,
           ),
           const Expanded(flex: 2, child: SizedBox.shrink()),
