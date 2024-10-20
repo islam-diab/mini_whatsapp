@@ -5,6 +5,8 @@ import 'package:mini_whatsapp/features/auth/data/data_sources/data_source.dart';
 import 'package:mini_whatsapp/features/auth/data/repositories/login_repository.dart';
 import 'package:mini_whatsapp/features/auth/presentation/view_models/login_cubit.dart';
 import 'package:mini_whatsapp/features/auth/presentation/views/login_view.dart';
+import 'package:mini_whatsapp/features/auth/presentation/views/signup_view.dart';
+import 'package:mini_whatsapp/features/home/presentation/view/home_view.dart';
 import 'package:mini_whatsapp/features/splash/presentation/view/splash_screen.dart';
 
 class AppRouter {
@@ -12,6 +14,10 @@ class AppRouter {
     // final argument = settings.arguments;
 
     switch (settings.name) {
+      case Routes.splash:
+        return MaterialPageRoute(
+          builder: (_) => const SplashScreen(),
+        );
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -22,9 +28,14 @@ class AppRouter {
           ),
         );
 
-      case Routes.splash:
+      case Routes.register:
         return MaterialPageRoute(
-          builder: (_) => const SplashScreen(),
+          builder: (_) => const SignupView(),
+        );
+
+      case Routes.home:
+        return MaterialPageRoute(
+          builder: (_) => const HomeView(),
         );
 
       default:
