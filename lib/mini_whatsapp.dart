@@ -19,7 +19,7 @@ class MiniWhatsapp extends StatelessWidget {
         textTheme: GoogleFonts.interTextTheme(),
         useMaterial3: true,
       ),
-      initialRoute: Routes.splash,
+      initialRoute: Routes.home,
       onGenerateRoute: appRouter.generateRoute,
     );
   }

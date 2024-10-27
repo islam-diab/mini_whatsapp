@@ -15,6 +15,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return AppTextForm(
       controller: widget.passwordController,
       hintText: "Password",
+      labelText: "Password",
       validator: (value) {
         if (value == null ||
             value.isEmpty ||

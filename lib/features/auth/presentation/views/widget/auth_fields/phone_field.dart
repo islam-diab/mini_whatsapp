@@ -8,6 +8,7 @@ class PhoneField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextForm(
       hintText: 'Phone',
+      labelText: 'Phone',
       controller: phoneController,
       prefixIcon: const Icon(Icons.phone),
       keyboardType: TextInputType.phone,
