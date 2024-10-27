@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_whatsapp/core/theming/app_colors.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view/chats_view.dart';
+import 'package:mini_whatsapp/features/status/presentation/view/status_view.dart';
 
 part 'widget/custom_bottom_navigation_bar.dart';
 part 'widget/home_app_bar.dart';
@@ -23,7 +24,7 @@ class _HomeViewState extends State<HomeView> {
 
   final pages = [
     const ChatsView(),
-    Container(),
+    const StatusView(),
     Container(),
   ];
 
