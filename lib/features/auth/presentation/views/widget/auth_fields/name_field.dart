@@ -8,6 +8,7 @@ class NameField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextForm(
       hintText: 'Name',
+      labelText: 'Name',
       controller: nameController,
       prefixIcon: const Icon(Icons.person),
       keyboardType: TextInputType.name,

@@ -3,13 +3,14 @@ import 'package:mini_whatsapp/core/theming/app_colors.dart';
 
 class AppTextForm extends StatelessWidget {
   final String hintText;
+  final String? labelText;
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool? obscureText;
-  final Function(String?) validator;
+  final Function(String?)? validator;
   const AppTextForm(
       {super.key,
       required this.hintText,
@@ -18,7 +19,9 @@ class AppTextForm extends StatelessWidget {
       this.suffixIcon,
       this.prefixIcon,
       this.obscureText,
-      required this.validator, this.textInputAction});
+      this.validator,
+      this.textInputAction,
+      this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +31,13 @@ class AppTextForm extends StatelessWidget {
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       validator: (value) {
-        return validator(value);
+        return validator!(value);
       },
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        labelText: hintText,
+        labelText: labelText,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16.0 * 1.5, vertical: 16.0),
         border: customOutLine(AppColors.teaGreen),

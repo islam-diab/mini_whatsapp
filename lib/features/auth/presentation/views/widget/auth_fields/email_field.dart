@@ -9,6 +9,7 @@ class EmailField extends StatelessWidget {
     return AppTextForm(
       controller: emailController,
       hintText: "Email",
+      labelText: "Email",
       keyboardType: TextInputType.emailAddress,
       prefixIcon: const Icon(Icons.email),
       validator: (value) {
