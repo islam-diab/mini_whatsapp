@@ -18,12 +18,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               value: 1,
               child: const Text("Profile"),
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const ProfileView(),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileView(),
+                  ),
+                );
               },
             ),
             const PopupMenuItem(
