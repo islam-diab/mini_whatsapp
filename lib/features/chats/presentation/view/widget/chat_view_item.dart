@@ -13,7 +13,7 @@ class ChatsBody extends StatelessWidget {
         ),
       ),
       title: const Text(
-        'Islam Diab',
+        'Islam Salama',
         style: AppTextStyles.font18Semibold,
       ),
       subtitle: const Row(
