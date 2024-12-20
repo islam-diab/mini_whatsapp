@@ -5,7 +5,7 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+    var formKey = context.read<AuthCubit>().formKey;
 
     return Column(
       children: [
@@ -19,18 +19,18 @@ class LoginBody extends StatelessWidget {
           buttonText: 'Login',
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              Navigator.pushReplacementNamed(context, Routes.home);
+              context.read<AuthCubit>().login();
             }
           },
         ),
-         AuthTextSpan(
+        AuthTextSpan(
           text: 'Don\'t have an account ? ',
           pageName: 'Register here',
           onTap: () {
             Navigator.pushNamed(context, Routes.register);
           },
-          
-         ),
+        ),
+        const AuthBlocListener(),
       ],
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_whatsapp/core/routing/routes.dart';
 import 'package:mini_whatsapp/features/auth/data/data_sources/data_source.dart';
-import 'package:mini_whatsapp/features/auth/data/repositories/login_repository.dart';
+import 'package:mini_whatsapp/features/auth/data/repositories/auth_repository.dart';
 import 'package:mini_whatsapp/features/auth/presentation/view_models/login_cubit.dart';
 import 'package:mini_whatsapp/features/auth/presentation/views/login_view.dart';
 import 'package:mini_whatsapp/features/auth/presentation/views/signup_view.dart';
@@ -21,8 +21,8 @@ class AppRouter {
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => LoginCubit(
-              LoginRepository(dataSource: DataSource()),
+            create: (context) => AuthCubit(
+              AuthRepository(dataSource: DataSource()),
             ),
             child: const LoginView(),
           ),
@@ -30,7 +30,12 @@ class AppRouter {
 
       case Routes.register:
         return MaterialPageRoute(
-          builder: (_) => const SignupView(),
+          builder: (_) => BlocProvider(
+            create: (context) => AuthCubit(
+              AuthRepository(dataSource: DataSource()),
+            ),
+            child: const SignupView(),
+          ),
         );
 
       case Routes.home:
