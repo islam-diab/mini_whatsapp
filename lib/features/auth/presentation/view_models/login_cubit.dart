@@ -1,23 +1,44 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mini_whatsapp/features/auth/data/repositories/login_repository.dart';
+import 'package:mini_whatsapp/core/model/user.dart';
+import 'package:mini_whatsapp/features/auth/data/repositories/auth_repository.dart';
 
 part 'login_state.dart';
 
-class LoginCubit extends Cubit<LoginState> {
-  final LoginRepository loginRepository;
+class AuthCubit extends Cubit<AuthState> {
+  final AuthRepository loginRepository;
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  LoginCubit(this.loginRepository) : super(LoginInitial());
+  AuthCubit(this.loginRepository) : super(AuthInitial());
+
+  Future<void> register() async {
+    emit(AuthLoading());
+
+    UserModel user = UserModel(
+        uid: DateTime.now().toString(),
+        name: nameController.text,
+        email: emailController.text,
+        phone: phoneController.text,
+        password: passwordController.text);
+    try {
+      await loginRepository.register(user);
+      emit(AuthSuccess());
+    } catch (e) {
+      emit(AuthError(error: e.toString()));
+    }
+  }
 
   Future<void> login() async {
-    emit(LoginLoading());
+    emit(AuthLoading());
     try {
-      await loginRepository.login(emailController.text, passwordController.text);
-      emit(LoginSuccess());
+      await loginRepository.login(
+          emailController.text, passwordController.text);
+      emit(AuthSuccess());
     } catch (e) {
-      emit(LoginError(message: e.toString()));
+      emit(AuthError(error: e.toString()));
     }
   }
 }

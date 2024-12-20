@@ -5,7 +5,7 @@ class SignupBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+    var formKey = context.read<AuthCubit>().formKey;
 
     return Column(
       children: [
@@ -19,7 +19,7 @@ class SignupBody extends StatelessWidget {
           buttonText: 'Sing Up',
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              Navigator.pushReplacementNamed(context, Routes.home);
+              context.read<AuthCubit>().register();
             }
           },
         ),
@@ -31,6 +31,7 @@ class SignupBody extends StatelessWidget {
           },
         ),
         verticalSpace(20),
+        const AuthBlocListener(),
       ],
     );
   }
