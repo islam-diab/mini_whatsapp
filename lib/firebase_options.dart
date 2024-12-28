@@ -46,7 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '971434104484',
     projectId: 'chat-app-23e3b',
     authDomain: 'chat-app-23e3b.firebaseapp.com',
-    storageBucket: 'chat-app-23e3b.appspot.com',
+    storageBucket: 'chat-app-23e3b.firebasestorage.app',
     measurementId: 'G-PLEQRHB5PM',
   );
 
@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
     appId: '1:971434104484:android:b6e7a657bdc8b61d6eb831',
     messagingSenderId: '971434104484',
     projectId: 'chat-app-23e3b',
-    storageBucket: 'chat-app-23e3b.appspot.com',
+    storageBucket: 'chat-app-23e3b.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:971434104484:ios:4f2e92774481f8e46eb831',
     messagingSenderId: '971434104484',
     projectId: 'chat-app-23e3b',
-    storageBucket: 'chat-app-23e3b.appspot.com',
+    storageBucket: 'chat-app-23e3b.firebasestorage.app',
     iosBundleId: 'com.example.miniWhatsapp',
   );
 
@@ -72,7 +72,7 @@ class DefaultFirebaseOptions {
     appId: '1:971434104484:ios:4f2e92774481f8e46eb831',
     messagingSenderId: '971434104484',
     projectId: 'chat-app-23e3b',
-    storageBucket: 'chat-app-23e3b.appspot.com',
+    storageBucket: 'chat-app-23e3b.firebasestorage.app',
     iosBundleId: 'com.example.miniWhatsapp',
   );
 
@@ -82,7 +82,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '971434104484',
     projectId: 'chat-app-23e3b',
     authDomain: 'chat-app-23e3b.firebaseapp.com',
-    storageBucket: 'chat-app-23e3b.appspot.com',
+    storageBucket: 'chat-app-23e3b.firebasestorage.app',
     measurementId: 'G-X02SH8V026',
   );
+
 }

@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "971434104484",
     "project_id": "chat-app-23e3b",
-    "storage_bucket": "chat-app-23e3b.appspot.com"
+    "storage_bucket": "chat-app-23e3b.firebasestorage.app"
   },
   "client": [
     {
