@@ -1,5 +1,8 @@
 # mini_whatsapp
 
+![Group 1436](https://github.com/user-attachments/assets/4cfae2a7-f6f3-4e9f-991b-46390a17807a)
+
+
 A new Flutter project.
 
 ## Getting Started
