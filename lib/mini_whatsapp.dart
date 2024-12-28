@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mini_whatsapp/core/routing/routes.dart';
@@ -10,6 +11,16 @@ class MiniWhatsapp extends StatelessWidget {
 
   const MiniWhatsapp({super.key, required this.appRouter});
 
+  //if user login
+  String checkIfUserLogin() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return Routes.splash;
+    } else {
+      return Routes.login;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +30,7 @@ class MiniWhatsapp extends StatelessWidget {
         textTheme: GoogleFonts.interTextTheme(),
         useMaterial3: true,
       ),
-      initialRoute: Routes.login,
+      initialRoute: checkIfUserLogin(),
       onGenerateRoute: appRouter.generateRoute,
     );
   }

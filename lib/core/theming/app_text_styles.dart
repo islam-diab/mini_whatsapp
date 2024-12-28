@@ -6,6 +6,11 @@ class AppTextStyles {
     color: Colors.white,
   );
 
+  static const font12Grey = TextStyle(
+    fontSize: 12,
+    color: Colors.grey,
+  );
+
   static const font16BoldWhite = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,

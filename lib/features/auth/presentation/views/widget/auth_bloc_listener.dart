@@ -26,7 +26,8 @@ class AuthBlocListener extends StatelessWidget {
             ),
           );
         } else if (state is AuthSuccess) {
-          Navigator.pushNamed(context, Routes.home);
+          Navigator.pushNamedAndRemoveUntil(
+              context, Routes.home, (route) => false);
         } else if (state is AuthError) {
           Navigator.pop(context);
           showDialog(

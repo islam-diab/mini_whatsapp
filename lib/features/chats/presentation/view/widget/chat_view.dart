@@ -1,15 +1,69 @@
-part of '../chats_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 
-class ChatsViewBody extends StatelessWidget {
-  const ChatsViewBody({super.key});
+class ChatView extends StatelessWidget {
+  const ChatView({
+    super.key,
+    required this.room,
+  });
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return const ChatsBody();
-      },
+  final types.Room room;
+
+  void _handlePreviewDataFetched(
+    types.TextMessage message,
+    types.PreviewData previewData,
+  ) {
+    final updatedMessage = message.copyWith(previewData: previewData);
+
+    FirebaseChatCore.instance.updateMessage(updatedMessage, room.id);
+  }
+
+  void _handleSendPressed(types.PartialText message) {
+    FirebaseChatCore.instance.sendMessage(
+      message,
+      room.id,
     );
   }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          title: Text(room.name ?? 'Anonymous'),
+        ),
+        body: StreamBuilder<types.Room>(
+          initialData: room,
+          stream: FirebaseChatCore.instance.room(room.id),
+          builder: (context, snapshot) => StreamBuilder<List<types.Message>>(
+            initialData: const [],
+            stream: FirebaseChatCore.instance.messages(snapshot.data!),
+            builder: (context, snapshot) {
+              return Chat(
+                showUserAvatars: true,
+                emojiEnlargementBehavior: EmojiEnlargementBehavior.single,
+                theme: const DefaultChatTheme(),
+                emptyState: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ],
+                ),
+                messages: snapshot.data ?? [],
+                onPreviewDataFetched: _handlePreviewDataFetched,
+                onSendPressed: _handleSendPressed,
+                user: types.User(
+                  id: FirebaseChatCore.instance.firebaseUser?.uid ?? '',
+                ),
+              );
+            },
+          ),
+        ),
+      );
 }
