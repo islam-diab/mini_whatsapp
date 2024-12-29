@@ -11,6 +11,8 @@ class AppTextForm extends StatelessWidget {
   final Widget? prefixIcon;
   final bool? obscureText;
   final Function(String?)? validator;
+  final Function(String)? onChanged;
+  final Function(PointerDownEvent)? onTapOutside;
   const AppTextForm(
       {super.key,
       required this.hintText,
@@ -21,11 +23,15 @@ class AppTextForm extends StatelessWidget {
       this.obscureText,
       this.validator,
       this.textInputAction,
-      this.labelText});
+      this.labelText,
+      this.onChanged,
+      this.onTapOutside});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
+      onTapOutside: onTapOutside,
       controller: controller,
       obscureText: obscureText ?? false,
       keyboardType: keyboardType,
