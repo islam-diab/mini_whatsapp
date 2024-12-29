@@ -1,16 +1,43 @@
 part of '../home_view.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
 
   @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(55);
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  bool isSearch = false;
+  @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text("WhatsUp"),
+      title: isSearch
+          ? AppTextForm(
+              hintText: 'Search...',
+              controller: TextEditingController(),
+              onChanged: (p0) {
+                context.read<ChatsCubit>().searchRooms(p0);
+              },
+              onTapOutside: (event) {
+                setState(() {
+                  isSearch = !isSearch;
+                });
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+            )
+          : const Text('WhatsApp'),
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              isSearch = !isSearch;
+            });
+          },
         ),
         PopupMenuButton(itemBuilder: (context) {
           return [
@@ -35,7 +62,4 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

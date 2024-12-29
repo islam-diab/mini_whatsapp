@@ -13,17 +13,25 @@ part 'chats_state.dart';
 
 class ChatsCubit extends Cubit<ChatsState> {
   final ChatsRepository homeDataSource;
+  List<types.Room> roomsList = [];
+  List<types.Room> filteredRooms = [];
+
   ChatsCubit(this.homeDataSource) : super(RoomsInitial());
 
   void fetchRooms() {
     try {
       emit(RoomsLoading());
 
-      FirebaseChatCore.instance.rooms().listen((rooms) async {
+      FirebaseChatCore.instance
+          .rooms(orderByUpdatedAt: true)
+          .listen((rooms) async {
         if (rooms.isEmpty) {
           emit(RoomsError("No rooms available."));
           return;
         }
+
+        roomsList = rooms;
+        // filteredRooms = rooms;
 
         List<String> latestMessages = [];
         List<String> latestTimes = [];
@@ -49,6 +57,38 @@ class ChatsCubit extends Cubit<ChatsState> {
     } catch (e) {
       emit(RoomsError(e.toString()));
     }
+  }
+
+  void searchRooms(String query) async {
+    if (query.isEmpty) {
+      filteredRooms = roomsList;
+      fetchRooms();
+    } else {
+      filteredRooms = roomsList.where((room) {
+        return room.name?.toLowerCase().contains(query.toLowerCase()) ?? false;
+      }).toList();
+    }
+
+    List<String> latestMessages = [];
+    List<String> latestTimes = [];
+    List<bool> isCurrentUserSender = [];
+
+    for (var room in filteredRooms) {
+      ApiResult result = await homeDataSource.getChatsInfo(room.id);
+      if (result.isError) {
+        emit(RoomsError(result.value.toString()));
+        return;
+      }
+      MessageModel message = result.value;
+
+      latestMessages.add(message.text);
+      latestTimes.add(formatTime(message.updatedAt));
+      isCurrentUserSender
+          .add(checkIfCurrentUserSendTheMessage(message.authorId));
+    }
+
+    emit(RoomsLoaded(
+        filteredRooms, latestMessages, latestTimes, isCurrentUserSender));
   }
 
   String formatTime(Timestamp timestamp) {
