@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view/widget/chat_view.dart';
+import 'package:mini_whatsapp/features/chats/presentation/view/widget/delete_chat_dialog.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view/widget/user_view_item.dart';
 
 class UserListView extends StatelessWidget {
@@ -30,6 +31,16 @@ class UserListView extends StatelessWidget {
         final isSender = isCurrentUserSender[index];
 
         return GestureDetector(
+          onLongPress: () {
+            showAdaptiveDialog(
+                context: context,
+                builder: (context) {
+                  return DeleteChatDialog(
+                    roomId: room.id,
+                    roomName: room.name!,
+                  );
+                });
+          },
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
