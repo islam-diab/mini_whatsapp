@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
-import 'package:mini_whatsapp/features/chats/presentation/view/widget/all_user_list_view.dart';
+import 'package:mini_whatsapp/features/chats/presentation/view/widget/users_view/all_user_list_view.dart';
 
 class ShowAllUser extends StatelessWidget {
   const ShowAllUser({super.key});
