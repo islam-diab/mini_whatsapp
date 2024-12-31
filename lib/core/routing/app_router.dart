@@ -9,6 +9,8 @@ import 'package:mini_whatsapp/features/auth/presentation/views/signup_view.dart'
 import 'package:mini_whatsapp/features/chats/data/chats_data_source.dart';
 import 'package:mini_whatsapp/features/chats/data/chats_repository.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view_model/chats_cubit.dart';
+import 'package:mini_whatsapp/features/group/presentation/view/group_view.dart';
+import 'package:mini_whatsapp/features/group/presentation/view_model/group_cubit.dart';
 import 'package:mini_whatsapp/features/home/presentation/view/home_view.dart';
 import 'package:mini_whatsapp/features/splash/presentation/view/splash_screen.dart';
 
@@ -50,6 +52,13 @@ class AppRouter {
             child: const HomeView(),
           ),
         );
+
+      case Routes.group:
+        return MaterialPageRoute(
+            builder: (constext) => BlocProvider(
+                  create: (context) => GroupCubit(),
+                  child: GroupView(),
+                ));
 
       default:
         return null;

@@ -53,9 +53,12 @@ class _HomeAppBarState extends State<HomeAppBar> {
                 );
               },
             ),
-            const PopupMenuItem(
+            PopupMenuItem(
               value: 2,
-              child: Text("Setting"),
+              child: const Text("Create Group"),
+              onTap: () {
+                Navigator.pushNamed(context, Routes.group);
+              },
             ),
           ];
         })

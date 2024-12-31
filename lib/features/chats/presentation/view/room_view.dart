@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_whatsapp/core/widget/app_floating_button.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view/widget/show_all_user.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view/widget/user_list_view.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view_model/chats_cubit.dart';
