@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view/widget/chat_view.dart';
 import 'package:mini_whatsapp/features/chats/presentation/view/widget/delete_chat_dialog.dart';
-import 'package:mini_whatsapp/features/chats/presentation/view/widget/user_view_item.dart';
+import 'package:mini_whatsapp/features/chats/presentation/view/widget/room_list_view_item.dart';
 
-class UserListView extends StatelessWidget {
+class RoomListView extends StatelessWidget {
   final List<Room> rooms;
   final List<String> lastMessages;
   final List<String> lastTimes;
   final List<bool> isCurrentUserSender;
-  final bool isOnline;
 
-  const UserListView({
+  const RoomListView({
     super.key,
     required this.rooms,
-    required this.isOnline,
     required this.lastMessages,
     required this.lastTimes,
     required this.isCurrentUserSender,
@@ -50,10 +48,9 @@ class UserListView extends StatelessWidget {
               ),
             );
           },
-          child: UserViewItem(
+          child: RoomListViewItem(
             image: room.imageUrl,
             name: room.name,
-            isOnline: isOnline,
             lastMessage: lastMessage,
             lastTime: lastTime,
             isCurrentUserSender: isSender,

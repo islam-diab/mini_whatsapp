@@ -1,10 +1,12 @@
-part of '../room_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'chats_shimmer_loading.dart';
+import 'room_list_view.dart';
+import 'package:mini_whatsapp/features/chats/presentation/view_model/chats_cubit.dart';
 
 class RoomBlocBuilder extends StatelessWidget {
-  final bool isOnline;
   const RoomBlocBuilder({
     super.key,
-    required this.isOnline,
   });
 
   @override
@@ -21,11 +23,10 @@ class RoomBlocBuilder extends StatelessWidget {
           final rooms = state.rooms;
           final lastMessages = state.lastMessage;
 
-          return UserListView(
+          return RoomListView(
             rooms: rooms,
             lastMessages: lastMessages,
             lastTimes: state.latestTimes,
-            isOnline: isOnline,
             isCurrentUserSender: state.isCurrentUserSender,
           );
         } else {

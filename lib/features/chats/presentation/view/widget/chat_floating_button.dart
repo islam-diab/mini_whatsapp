@@ -1,4 +1,6 @@
-part of '../room_view.dart';
+import 'package:flutter/material.dart';
+import 'package:mini_whatsapp/core/widget/app_floating_button.dart';
+import 'users_view/show_all_user.dart';
 
 class ChatFloatingButton extends StatelessWidget {
   const ChatFloatingButton({super.key});
