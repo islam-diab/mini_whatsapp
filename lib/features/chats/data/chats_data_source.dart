@@ -19,7 +19,8 @@ class ChatsDataSource {
         MessageModel message = MessageModel.fromJson(snap.docs.first.data());
         return ApiResult(value: message, isError: false);
       } else {
-        return ApiResult(value: 'No messages available', isError: true);
+        return ApiResult(
+            value: 'No messages found for this room', isError: false);
       }
     } catch (e) {
       return ApiResult(value: e.toString(), isError: true);

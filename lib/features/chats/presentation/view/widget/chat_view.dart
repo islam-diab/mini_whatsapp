@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
-import 'package:mini_whatsapp/core/routing/routes.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({
@@ -34,12 +33,6 @@ class ChatView extends StatelessWidget {
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           title: Text(room.name ?? 'Anonymous'),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, Routes.home, (pre) => false);
-              },
-              icon: const Icon(Icons.arrow_back)),
         ),
         body: StreamBuilder<types.Room>(
           initialData: room,
@@ -52,16 +45,6 @@ class ChatView extends StatelessWidget {
                 showUserAvatars: true,
                 emojiEnlargementBehavior: EmojiEnlargementBehavior.single,
                 theme: const DefaultChatTheme(),
-                emptyState: const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(),
-                    ),
-                  ],
-                ),
                 messages: snapshot.data ?? [],
                 onPreviewDataFetched: _handlePreviewDataFetched,
                 onSendPressed: _handleSendPressed,

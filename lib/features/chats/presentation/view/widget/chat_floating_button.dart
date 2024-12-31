@@ -8,7 +8,7 @@ class ChatFloatingButton extends StatelessWidget {
     return Positioned(
       bottom: 20,
       right: 20,
-      child: FloatingActionButton(
+      child: AppFloatingButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -17,11 +17,7 @@ class ChatFloatingButton extends StatelessWidget {
             ),
           );
         },
-        backgroundColor: Colors.green,
-        child: const Icon(
-          Icons.message,
-          color: Colors.white,
-        ),
+        icon: Icons.message,
       ),
     );
   }
