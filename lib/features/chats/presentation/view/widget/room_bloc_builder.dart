@@ -12,9 +12,7 @@ class RoomBlocBuilder extends StatelessWidget {
     return BlocBuilder<ChatsCubit, ChatsState>(
       builder: (context, state) {
         if (state is RoomsLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Expanded(child: ChatsShimmerLoading());
         } else if (state is RoomsError) {
           return Center(
             child: Text(state.message),
