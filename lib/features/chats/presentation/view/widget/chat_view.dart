@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:mini_whatsapp/core/helper/notification.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({
@@ -21,18 +21,21 @@ class ChatView extends StatelessWidget {
     FirebaseChatCore.instance.updateMessage(updatedMessage, room.id);
   }
 
-  void _handleSendPressed(types.PartialText message) {
+  void _handleSendPressed(types.PartialText message) async {
     FirebaseChatCore.instance.sendMessage(
       message,
       room.id,
     );
+    final otherUser = room.users.firstWhere(
+        (user) => user.id != FirebaseChatCore.instance.firebaseUser?.uid);
+    await NotificationService.sendNotification(
+        otherUser.id, room.name ?? '', message.text);
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: Text(room.name ?? 'Anonymous'),
+          title: Text(room.name ?? 'Islam salama'),
         ),
         body: StreamBuilder<types.Room>(
           initialData: room,
