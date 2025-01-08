@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:mini_whatsapp/core/model/api_result.dart';
@@ -11,16 +13,21 @@ class DataSource {
       var credential = await firebaseAuth.createUserWithEmailAndPassword(
           email: user.email, password: user.password);
 
-      await FirebaseChatCore.instance.createUserInFirestore(
-        types.User(
-          firstName: user.name,
-          id: credential.user!.uid,
-          imageUrl: 'https://i.pravatar.cc/300?u=${user.email}',
+      Future.wait([
+        FirebaseChatCore.instance.createUserInFirestore(
+          types.User(
+            firstName: user.name,
+            id: credential.user!.uid,
+            imageUrl: 'https://i.pravatar.cc/300?u=${user.email}',
+          ),
         ),
-      );
+        saveFCMToken(),
+      ]);
 
       return ApiResult(value: credential, isError: false);
-    } on Exception catch (e) {
+    } on FirebaseException catch (e) {
+      return ApiResult(value: e.toString(), isError: true);
+    } catch (e) {
       return ApiResult(value: e.toString(), isError: true);
     }
   }
@@ -31,8 +38,18 @@ class DataSource {
       var auth = await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       return ApiResult(value: auth, isError: false);
-    } on Exception catch (e) {
+    } on FirebaseException catch (e) {
+      return ApiResult(value: e.toString(), isError: true);
+    } catch (e) {
       return ApiResult(value: e.toString(), isError: true);
     }
+  }
+
+  //save user FMC
+  Future<void> saveFCMToken() async {
+    await FirebaseFirestore.instance
+        .collection('User FMC')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({'fcmToken': await FirebaseMessaging.instance.getToken() ?? ''});
   }
 }
